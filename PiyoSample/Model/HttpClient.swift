@@ -9,26 +9,30 @@
 import UIKit
 import Piyo
 
-class HttpClient {
+struct ApiURL {
+    static let urlScheme = (InfoPlistOperator.getUrlScheme ?? "") + "://"
+    static let oAuthUrl = "https://api.twitter.com/oauth/request_token"
+    static let oAuth2 = "https://api.twitter.com/oauth/authorize?oauth_token="    
+}
 
+class HttpClient {
+    
     func oAuth(){
-        let url = "https://api.twitter.com/oauth/request_token"
-        self.http(url: url,
-                  method: "POST",
-                  header: Twitter.authorize(url: url,
-                                            param: ["oauth_callback":"piyo-TIjxevWp2Ar2fLvnlTv51Te0F://"]),
-                  completion: { data in
-                    self.oAuth2(data: data)
-                                                                        
+        HttpClient.http(url: ApiURL.oAuthUrl,
+                        method: "POST",
+                        header: Twitter.authorize(url: ApiURL.oAuthUrl,
+                                                  param: ["oauth_callback":ApiURL.urlScheme]),
+                        completion: { data in
+                            self.oAuth2(data: data)
         })
     }
     
     func oAuth2(data: Data) {
-        let responseData = String(data: data, encoding: String.Encoding.utf8)
+        let responseData = String(data: data, encoding: .utf8)
         let attributes = responseData?.queryStringParameters
 
         if let attrbute = attributes?["oauth_token"] {
-            let url: String = "https://api.twitter.com/oauth/authorize?oauth_token=" + attrbute
+            let url: String = ApiURL.oAuth2 + attrbute
             let queryURL = URL(string: url)!
             DispatchQueue.main.async {
                 if #available(iOS 10.0, *) {
@@ -44,7 +48,7 @@ class HttpClient {
     func access(token: String){
         let url = "https://api.twitter.com/oauth/access_token"
         
-        self.http(url: url, method: "POST", header: Twitter.authorize(url: url, param: token.queryStringParameters)) { data in
+        HttpClient.http(url: url, method: "POST", header: Twitter.authorize(url: url, param: token.queryStringParameters)) { data in
 //            if (responce?.statusCode)! < 300 {
                 TwitAccount.shared.setTwiAccount(data: data)
 //                success(TwitAccount.shared.twitter)
@@ -55,12 +59,15 @@ class HttpClient {
     func tweet(tweet: String, comp: @escaping (String) -> Void){
         let url = "https://api.twitter.com/1.1/statuses/update.json"
         let header: [String: String] = ["Authorization": Twitter.signature(url: url, method: "POST", param: ["status" : tweet])]
-        self.http(url: url, method: "POST", header: header) { (data) in
+        HttpClient.http(url: url, method: "POST", header: header) { (data) in
             comp(String(data: data, encoding: .utf8)!)
         }
     }
 
-    func http(url: String ,method: String,header: [String:String]? = nil, completion: ((Data) -> Void)? = nil) {
+    static func http(url: String,
+                     method: String,
+                     header: [String:String]? = nil,
+                     completion: ((Data) -> Void)? = nil) {
         
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = method
