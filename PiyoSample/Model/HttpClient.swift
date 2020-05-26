@@ -13,9 +13,12 @@ class HttpClient {
 
     func oAuth(){
         let url = "https://api.twitter.com/oauth/request_token"
-        self.http(url: url, method: "POST", header: Twitter.authorize(url: url,
-                                                                      param: ["oauth_callback": "httpRequest-NNKAREvWGCn7Riw02gcOYXSVP://"]),completion: { data in
-                                                                        self.oAuth2(data: data)
+        self.http(url: url,
+                  method: "POST",
+                  header: Twitter.authorize(url: url,
+                                            param: ["oauth_callback":"piyo-TIjxevWp2Ar2fLvnlTv51Te0F://"]),
+                  completion: { data in
+                    self.oAuth2(data: data)
                                                                         
         })
     }

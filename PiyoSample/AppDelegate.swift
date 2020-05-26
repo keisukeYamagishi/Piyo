@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import Piyo
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        TwitterKey.shared.api.key = "TIjxevWp2Ar2fLvnlTv51Te0F"
+        TwitterKey.shared.api.secret = "igkEhuN2d2Q7AoARgtPe1dxcr4guttZgC8X8VBB2d5aYZxDj80"
+        
         // Override point for customization after application launch.
         return true
     }

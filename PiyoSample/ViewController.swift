@@ -18,6 +18,8 @@ class ViewController: UIViewController {
 
     @IBAction func pushInOAuth(_ sender: Any) {
         
+        let http = HttpClient()
+        http.oAuth()
         print ("Push in OAuth")
     }
     
