@@ -14,9 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        TwitterKey.shared.api.key = "TIjxevWp2Ar2fLvnlTv51Te0F"
-        TwitterKey.shared.api.secret = "igkEhuN2d2Q7AoARgtPe1dxcr4guttZgC8X8VBB2d5aYZxDj80"
-        
+        TwitterKey.shared.api.key = "RbNIuWhcQA9YNL5etljuTtQXe"
+        TwitterKey.shared.api.secret = "Ms86swzRP3t0NElcx8yxPr9dlpJl0jm4I0Dn4L3ofHuRJ4W0bp"        
         // Override point for customization after application launch.
         return true
     }
