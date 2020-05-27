@@ -48,6 +48,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>)
+    {
+        guard let url = URLContexts.first?.url else {
+            return
+        }
+        if(url.absoluteString.hasPrefix("piyooauth-rbniuwhcqa9ynl5etljuttqxe://")){
+            let splitPrefix: String = url.absoluteString.replacingOccurrences(of: "piyooauth-rbniuwhcqa9ynl5etljuttqxe://?", with: "")
+            
+            print ("Split prefix: \(splitPrefix)")
+        }
+    }
 }
 

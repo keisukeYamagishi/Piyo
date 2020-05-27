@@ -8,9 +8,9 @@
 
 import Foundation
 
-class InfoPlistOperator {
+class InfoPlist {
     
-    static let getUrlScheme: String? = {
+    static let urlScheme: String? = {
         let infoPlist = Bundle.main.infoDictionary
         let urlType:[Any] = infoPlist?["CFBundleURLTypes"] as! [Any]
         let items: [String:AnyObject] = urlType[0] as! [String:AnyObject]
@@ -19,5 +19,12 @@ class InfoPlistOperator {
             return urlScheme
         }
         return nil
+    }()
+    
+    static let callBackUrl: String = {
+        if let urlScheme: String = InfoPlist.urlScheme as String? {
+            return urlScheme + "://"
+        }
+        return ""
     }()
 }
