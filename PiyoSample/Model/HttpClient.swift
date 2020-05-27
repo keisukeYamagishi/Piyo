@@ -10,7 +10,7 @@ import UIKit
 import Piyo
 
 struct ApiURL {
-    static let urlScheme = (InfoPlistOperator.getUrlScheme ?? "") + "://"
+    static let urlScheme = InfoPlist.callBackUrl
     static let oAuthUrl = "https://api.twitter.com/oauth/request_token"
     static let oAuth2 = "https://api.twitter.com/oauth/authorize?oauth_token="    
 }
@@ -41,7 +41,6 @@ class HttpClient {
                     UIApplication.shared.openURL(queryURL)
                 }
             }
-//            success()
         }
     }
 
