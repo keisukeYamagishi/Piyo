@@ -7,21 +7,14 @@
 //
 
 import UIKit
+import Piyo
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var oAuthButton: UIButton!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-    @IBAction func pushInOAuth(_ sender: Any) {
-        
-        let http = HttpClient()
-        http.oAuth()
-        print ("Push in OAuth")
-    }
+    @IBOutlet weak var oAuthButton: UIButton!    
     
+    @IBAction func pushInOAuth(_ sender: Any) {                
+        TwitterApi.oAuth()
+    }
 }
 
