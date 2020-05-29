@@ -11,8 +11,6 @@ import Piyo
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var oAuthButton: UIButton!    
-    
     @IBAction func pushInOAuth(_ sender: Any) {                
         TwitterApi.oAuth()
     }

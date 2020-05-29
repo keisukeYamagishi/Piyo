@@ -45,8 +45,7 @@ class TwitterApi {
     }
 
     static func access(token: String, completion: (() -> Void)? = nil){
-        let url = "https://api.twitter.com/oauth/access_token"
-
+        let url = ApiURL.accessToken
         HttpClient.http(url: url,
                         method: "POST",
                         header: Twitter.authorize(url: url, param: token.queryStringParameters)) { data in
@@ -64,7 +63,7 @@ class TwitterApi {
 //    }
 
     static func user(completion: @escaping (_ user: Data) -> Void){
-        let url = "https://api.twitter.com/1.1/users/show.json"
+        let url = ApiURL.user
         let param = ["user_id": TwitAccount.shared.twitter.userId]
         let query = param.encodedQuery(using: .utf8)
         let uri = url + (url.range(of: "?") != nil ? "&" : "?") + query
