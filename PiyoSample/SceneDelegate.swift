@@ -60,8 +60,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             TwitterApi.access(token: splitPrefix) {
                 TwitterApi.user { user in
                     do {
-                        let couponData = try JSONSerialization.jsonObject(with: user, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
-                        print (couponData)
+                        let userInfo = try JSONSerialization.jsonObject(with: user, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
+                        print (userInfo)
                     }catch{
                         
                     }
