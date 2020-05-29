@@ -48,8 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>)
-    {
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else {
             return
         }
@@ -57,6 +56,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let splitPrefix: String = url.absoluteString.replacingOccurrences(of: "piyooauth-rbniuwhcqa9ynl5etljuttqxe://?", with: "")
             
             print ("Split prefix: \(splitPrefix)")
+            
+            TwitterApi.access(token: splitPrefix) {
+                TwitterApi.user { user in
+                    do {
+                        let userInfo = try JSONSerialization.jsonObject(with: user, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
+                        print (userInfo)
+                    }catch{
+                        
+                    }
+                }
+            }
         }
     }
 }
