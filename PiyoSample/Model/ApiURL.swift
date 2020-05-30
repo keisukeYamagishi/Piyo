@@ -14,4 +14,5 @@ struct ApiURL {
     static let oAuth2 = "https://api.twitter.com/oauth/authorize?oauth_token="
     static let accessToken = "https://api.twitter.com/oauth/access_token"
     static let user = "https://api.twitter.com/1.1/users/show.json"
+    static let tweet = "https://api.twitter.com/1.1/statuses/update_with_media.json"
 }

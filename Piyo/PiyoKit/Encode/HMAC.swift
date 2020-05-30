@@ -1,10 +1,10 @@
 //
-//  HttpMethod.swift
-//  swiftDemo
+//  HMAC.swift
+//  OAuthSwift
 //
-//  Created by shichimi on 2017/03/14.
-//  Copyright © 2017年 shichimitoucarashi. All rights reserved.
-//
+//  Created by Dongri Jin on 1/28/15.
+//  Copyright (c) 2015 Dongri Jin. All rights reserved.
+//  https://github.com/mattdonnelly/Swifter/blob/master/Sources/HMAC.swift
 
 import Foundation
 // swiftlint:disable all
