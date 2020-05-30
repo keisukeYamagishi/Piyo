@@ -1,14 +1,16 @@
 //
-//  Extention.swift
-//  HttpSession
+//  Extension.swift
+//  Piyo
 //
-//  Created by Shichimitoucarashi on 12/1/18.
-//  Copyright © 2018 keisuke yamagishi. All rights reserved.
+//  Created by Shichimitoucarashi on 2020/05/30.
+//  Copyright © 2020 Shichimitoucarashi. All rights reserved.
 //
 
-import UIKit
+import Foundation
+
 
 extension String {
+
     /*
      * Dictionary Converts a value to a string.
      * key=value&key=value
@@ -41,6 +43,13 @@ extension String {
             }
         }
         return parameters
+    }
+
+    public func toURL() throws -> URL {
+        guard let url = URL(string: self) else {
+            throw NSError(domain: "Invalid url", code: 10001)
+        }
+        return url
     }
 }
 
@@ -169,111 +178,3 @@ extension String {
         return self.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)!
     }
 }
-//
-//public extension Request {
-//
-//    func postTweet(url: String, tweet: String, img: UIImage) -> URLRequest {
-//
-//        var parameters: [String: String] = [:]
-//        parameters["status"] = tweet
-//
-//        let tweetMultipart = Multipart()
-//
-//        let body = tweetMultipart.tweetMultipart(param: parameters, img: img)
-//
-//        let header: [String: String] = ["Content-Type": "multipart/form-data; boundary=\(tweetMultipart.bundary)",
-//            "Authorization": Twitter().signature(url: url, method: .post, param: parameters, isUpload: true),
-//            "Content-Length": body.count.description]
-//
-//        self.headers(header: header)
-
-//        self.urlReq!.httpBody = body
-//
-//        return self.urlReq
-//    }
-//
-//}
-
-extension Multipart {
-    func tweetMultipart (param: [String: String], img: UIImage) -> Data {
-
-        var body: Data = Data()
-
-        let multipartData = Multipart.mulipartContent(with: self.bundary, data: img.pngData()!, fileName: "media.jpg", parameterName: "media[]", mimeType: "application/octet-stream")
-        body.append(multipartData)
-
-        for (key, value): (String, String) in param {
-            body.append("\r\n--\(self.bundary)\r\n".data(using: .utf8)!)
-            body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8)!)
-            body.append("\(value)".data(using: .utf8)!)
-        }
-
-        body.append("\r\n--\(self.bundary)--\r\n".data(using: .utf8)!)
-        return body
-    }
-}
-
-open class Multipart {
-
-    public struct data {
-        public var fileName: String!
-        public var mimeType: String!
-        public var data: Data!
-        public init() {
-            self.fileName = ""
-            self.mimeType = ""
-            self.data = Data()
-        }
-    }
-
-    public var bundary: String
-    public var uuid: String
-
-    public init() {
-        self.uuid = UUID().uuidString
-        self.bundary = String(format: "----\(self.uuid)")
-    }
-
-    public func multiparts(params: [String: Multipart.data]) -> Data {
-
-        var post: Data = Data()
-
-        for(key, value) in params {
-            let dto: Multipart.data = value
-            post.append(multipart(key: key, fileName: dto.fileName as String, mineType: dto.mimeType, data: dto.data))
-        }
-        return post
-    }
-
-    public func multipart(key: String, fileName: String, mineType: String, data: Data) -> Data {
-
-        var body = Data()
-        let CRLF = "\r\n"
-        body.append(("--\(self.bundary)" + CRLF).data(using: .utf8)!)
-        body.append(("Content-Disposition: form-data; name=\"\(key)\"; filename=\"\(fileName)\"" + CRLF).data(using: .utf8)!)
-        body.append(("Content-Type: \(mineType)" + CRLF + CRLF).data(using: .utf8)!)
-        body.append(data)
-        body.append(CRLF.data(using: .utf8)!)
-        body.append(("--\(self.bundary)--" + CRLF).data(using: .utf8)!)
-
-        return body
-    }
-
-    public static func mulipartContent(with boundary: String,
-                                       data: Data,
-                                       fileName: String?,
-                                       parameterName: String,
-                                       mimeType mimeTypeOrNil: String?) -> Data {
-        let mimeType = mimeTypeOrNil ?? "application/octet-stream"
-        let fileNameContentDisposition = fileName != nil ? "filename=\"\(fileName!)\"" : ""
-        let contentDisposition = "Content-Disposition: form-data; name=\"\(parameterName)\"; \(fileNameContentDisposition)\r\n"
-
-        var tempData = Data()
-        tempData.append("--\(boundary)\r\n".data(using: .utf8)!)
-        tempData.append(contentDisposition.data(using: .utf8)!)
-        tempData.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
-        tempData.append(data)
-        return tempData
-    }
-}
-

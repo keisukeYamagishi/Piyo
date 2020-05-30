@@ -11,17 +11,8 @@ import Piyo
 
 class HttpClient {
 
-    static func http(url: String,
-                     method: String,
-                     header: [String:String]? = nil,
+    static func connect(request: URLRequest,
                      completion: ((Data) -> Void)? = nil) {
-        
-        var request = URLRequest(url: URL(string: url)!)
-        request.httpMethod = method
-        for (key, value) in header ?? [:] {
-            request.setValue(value, forHTTPHeaderField: key)
-        }
-
         let task = URLSession.shared.dataTask(with: request) { (data, responce, error) in
             // ここのエラーはクライアントサイドのエラー(ホストに接続できないなど)
             if let error = error {

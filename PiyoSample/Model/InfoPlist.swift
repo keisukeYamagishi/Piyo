@@ -9,7 +9,7 @@
 import Foundation
 
 class InfoPlist {
-    
+
     static let urlScheme: String? = {
         let infoPlist = Bundle.main.infoDictionary
         let urlType:[Any] = infoPlist?["CFBundleURLTypes"] as! [Any]
@@ -20,7 +20,7 @@ class InfoPlist {
         }
         return nil
     }()
-    
+
     static let callBackUrl: String = {
         if let urlScheme: String = InfoPlist.urlScheme as String? {
             return urlScheme + "://"

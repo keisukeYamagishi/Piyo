@@ -22,7 +22,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>CFBundleURLIconFile</key>
-			<string></string>
+			<string>download</string>
 			<key>CFBundleURLName</key>
 			<string>com.keisuke.PiyoSample</string>
 			<key>CFBundleURLSchemes</key>
