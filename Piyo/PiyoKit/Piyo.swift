@@ -9,7 +9,7 @@
 import UIKit
 
 open class Piyo {
-    
+
     /*
      * Http method
      */
@@ -32,7 +32,7 @@ open class Piyo {
                             method: Method,
                             param: [String: String],
                             upload: Bool = false) -> [String: String]? {
-        
+
         guard let signature = Piyo.signature(url: url,
                                              method: method,
                                              param: param,
@@ -56,8 +56,8 @@ open class Piyo {
                                                     method: method.rawValue,
                                                     param: param,
                                                     isMediaUpload: upload)
-        } catch{
-            print ("Exception: \(error)")
+        } catch {
+            print("Exception: \(error)")
         }
         return nil
     }

@@ -12,19 +12,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -52,23 +48,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let url = URLContexts.first?.url else {
             return
         }
-        if(url.absoluteString.hasPrefix("piyooauth-rbniuwhcqa9ynl5etljuttqxe://")){
-            let splitPrefix: String = url.absoluteString.replacingOccurrences(of: "piyooauth-rbniuwhcqa9ynl5etljuttqxe://?", with: "")
-            
-            print ("Split prefix: \(splitPrefix)")
-            
+        let scheme = "piyooauth-rbniuwhcqa9ynl5etljuttqxe://"
+        if url.absoluteString.hasPrefix(scheme) {
+            let splitPrefix: String = url.absoluteString.replacingOccurrences(of: "\(scheme)?", with: "")
+            print("Split prefix: \(splitPrefix)")
             TwitterApi.access(token: splitPrefix) {
                 TwitterApi.user { user in
                     do {
-                        let userInfo = try JSONSerialization.jsonObject(with: user, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
-                        print (userInfo)
-                        TwitterApi.tweet(tweet: "Hello")                        
-                    }catch{
-                        
+                        let option = JSONSerialization.ReadingOptions.allowFragments
+                        guard let userInfo = try JSONSerialization.jsonObject(with: user,
+                                                                              options: option) as? [String: Any] else { return }
+                        print(userInfo)
+                        TwitterApi.tweet(tweet: "Hello,,,,,,,,")
+                    } catch {
+                        print("Exception: \(error)")
                     }
                 }
             }
         }
     }
 }
-

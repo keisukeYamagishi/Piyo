@@ -7,7 +7,7 @@
 //  https://github.com/mattdonnelly/Swifter/blob/master/Sources/HMAC.swift
 
 import Foundation
-// swiftlint:disable all
+
 public struct HMAC {
 
     internal static func sha1(key: Data, message: Data) -> Data? {
@@ -24,11 +24,11 @@ public struct HMAC {
         }
 
         var opad = [UInt8](repeating: 0x5c, count: 64)
-        for (idx, _) in key.enumerated() {
+        for idx in key.indices {//enumerated() {
             opad[idx] = key[idx] ^ opad[idx]
         }
         var ipad = [UInt8](repeating: 0x36, count: 64)
-        for (idx, _) in key.enumerated() {
+        for idx in key.indices {
             ipad[idx] = key[idx] ^ ipad[idx]
         }
 
@@ -39,4 +39,3 @@ public struct HMAC {
         return Data(bytes: UnsafePointer<UInt8>(mac), count: mac.count)
     }
 }
-// swiftlint:enable all
