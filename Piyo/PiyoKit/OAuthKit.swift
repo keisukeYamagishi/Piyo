@@ -42,7 +42,7 @@ open class OAuthKit {
 
     public static func authorizationHeader(for url: URL,
                                            method: String,
-                                           param: Dictionary<String, Any>,
+                                           param: [String: Any],
                                            isMediaUpload: Bool = false ) -> String {
         return OAuthKit().authorizationHeader(for: url,
                                               method: method,
@@ -57,9 +57,9 @@ open class OAuthKit {
      */
     public func authorizationHeader(for url: URL,
                                     method: String,
-                                    parameters: Dictionary<String, Any>,
+                                    parameters: [String: Any],
                                     isMediaUpload: Bool) -> String {
-        var authorization = Dictionary<String, Any>()
+        var authorization: [String: Any] = [:]
         authorization["oauth_version"] = OAuth.version
         authorization["oauth_signature_method"] =  OAuth.signatureMethod
         authorization["oauth_consumer_key"] = TwitterKey.shared.api.key
@@ -78,7 +78,8 @@ open class OAuthKit {
 
         authorization["oauth_signature"] = self.oauthSignature(for: url, method: method, parameters: final)
 
-        let authorizationParameterComponents = authorization.encodedQuery(using: .utf8).components(separatedBy: "&").sorted()
+        let authorizationParameter = authorization.encodedQuery(using: .utf8)
+        let authorizationParameterComponents = authorizationParameter.components(separatedBy: "&").sorted()
 
         var headerComponents = [String]()
         for component in authorizationParameterComponents {
@@ -97,7 +98,7 @@ open class OAuthKit {
      */
     public func oauthSignature(for url: URL,
                                method: String,
-                               parameters: Dictionary<String, Any>) -> String {
+                               parameters: [String: Any]) -> String {
         let tokenSecret = TwitAccount.shared.twitter.oAuth.secret
         let encodedConsumerSecret = TwitterKey.shared.api.secret.percentEncode()
         let signingKey = "\(encodedConsumerSecret)&\(tokenSecret)"

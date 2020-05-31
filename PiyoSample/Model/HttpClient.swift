@@ -12,7 +12,7 @@ import Piyo
 class HttpClient {
 
     static func connect(request: URLRequest,
-                     completion: ((Data) -> Void)? = nil) {
+                        completion: ((Data) -> Void)? = nil) {
         let task = URLSession.shared.dataTask(with: request) { (data, responce, error) in
             // ここのエラーはクライアントサイドのエラー(ホストに接続できないなど)
             if let error = error {
@@ -33,7 +33,6 @@ class HttpClient {
                 // レスポンスのステータスコードが200でない場合などはサーバサイドエラー
                 print("サーバエラー ステータスコード: \(response.statusCode)\n")
             }
-
         }
         task.resume()
     }

@@ -17,7 +17,7 @@ class TwitterApi {
         }
     }
 
-    static func oAuthRequestToken(completion: @escaping (_ data: Data) -> Void){
+    static func oAuthRequestToken(completion: @escaping (_ data: Data) -> Void) {
 
         guard let authHeader = Piyo.auth(url: ApiURL.oAuthUrl,
                                          method: .post,
@@ -52,7 +52,7 @@ class TwitterApi {
         }
     }
 
-    static func access(token: String, completion: (() -> Void)? = nil){
+    static func access(token: String, completion: (() -> Void)? = nil) {
         let url = ApiURL.accessToken
         guard let header = Piyo.auth(url: url, method: .post, param: token.queryStringParameters) else { return }
         guard let request = Request.create(url: url, method: "POST", header: header) else { return }
@@ -63,7 +63,7 @@ class TwitterApi {
         }
     }
 
-    static func user(completion: @escaping (_ user: Data) -> Void){
+    static func user(completion: @escaping (_ user: Data) -> Void) {
         let url = ApiURL.user
         let param = ["user_id": TwitAccount.shared.twitter.userId]
         let query = param.encodedQuery(using: .utf8)
@@ -80,8 +80,8 @@ class TwitterApi {
             completion(data)
         }
     }
-    
-    static func tweetWithMedia(tweet: String) {        
+
+    static func tweetWithMedia(tweet: String) {
         guard let request = Request.tweetWithMedia(url: ApiURL.tweetWithMedia,
                                           tweet: "Hi! Tweet",
                                           img: UIImage(named: "download.png")!) else { return }

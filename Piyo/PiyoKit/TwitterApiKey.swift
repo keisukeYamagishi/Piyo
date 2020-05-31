@@ -27,8 +27,13 @@ open class TwitterKey {
     private init() {}
 
     public func setBeareToken(data: Data) {
-        if let beare = ((try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String]) as [String: String]??) {
-            self.beareToken = beare!["access_token"]
+        do {
+            guard let beare = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String] else {
+                return
+            }
+            self.beareToken = beare["access_token"]
+        } catch {
+            print(error)
         }
     }
 }
