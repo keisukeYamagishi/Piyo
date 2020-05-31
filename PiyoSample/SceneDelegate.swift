@@ -62,11 +62,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     do {
                         let userInfo = try JSONSerialization.jsonObject(with: user, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
                         print (userInfo)
-                        
-                        TwitterApi.tweet(tweet: "Hello") {
-                            
-                        }
-                        
+                        TwitterApi.tweet(tweet: "Hello")                        
                     }catch{
                         
                     }
