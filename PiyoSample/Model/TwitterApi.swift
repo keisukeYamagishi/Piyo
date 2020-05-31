@@ -81,10 +81,15 @@ class TwitterApi {
         }
     }
     
-    static func tweet(tweet: String, comp: @escaping () -> Void) {        
-        guard let request = Request.tweet(url: ApiURL.tweet,
+    static func tweetWithMedia(tweet: String) {        
+        guard let request = Request.tweetWithMedia(url: ApiURL.tweetWithMedia,
                                           tweet: "Hi! Tweet",
                                           img: UIImage(named: "download.png")!) else { return }
+        HttpClient.connect(request: request)
+    }
+
+    static func tweet(tweet: String) {
+        guard let request = Request.tweet(url: ApiURL.tweet, tweet: tweet) else { return }
         HttpClient.connect(request: request)
     }
 }

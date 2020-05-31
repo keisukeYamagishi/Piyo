@@ -25,7 +25,7 @@ open class Request {
         return nil
     }
     
-    public static func tweet(url: String, tweet: String, img: UIImage = UIImage()) -> URLRequest? {
+    public static func tweetWithMedia(url: String, tweet: String, img: UIImage = UIImage()) -> URLRequest? {
 
         do {
             var request = try URLRequest(url: url.toURL())
@@ -44,6 +44,35 @@ open class Request {
                 "Authorization": signature,
                 //OAuthKit.authorizationHeader(for: try url.toURL(), method: "POST", param: parameters, isMediaUpload: true),
                 "Content-Length": body.count.description]
+
+            for (key, value) in header {
+                request.setValue(value, forHTTPHeaderField: key)
+            }
+
+            request.httpBody = body
+            request.httpMethod = "POST"
+            return request
+        }catch{
+            print (error)
+        }
+        return nil
+    }
+
+    public static func tweet(url: String, tweet: String) -> URLRequest? {
+        do {
+            var request = try URLRequest(url: url.toURL())
+            
+            let parameters: [String: String] = ["status": tweet]
+            let value: String = URI.twitterEncode(param: parameters)
+            let body: Data = value.data(using: .utf8)! as Data
+            guard let signature = Piyo.signature(url: url,
+                                                 method: .post,
+                                                 param: parameters, upload: false) else {
+                return nil
+            }
+
+            let header: [String: String] = ["Authorization": signature,
+                                            "Content-Length": body.count.description]
 
             for (key, value) in header {
                 request.setValue(value, forHTTPHeaderField: key)

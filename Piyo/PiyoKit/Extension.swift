@@ -114,7 +114,7 @@ extension Dictionary {
     }
 }
 
-class URI {
+public class URI {
 
     /*
      * Base64 encode with comsumer key and comsmer secret
