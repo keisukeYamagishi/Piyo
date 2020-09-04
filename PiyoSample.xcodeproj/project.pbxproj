@@ -82,8 +82,6 @@
 		C7AF615D247C03E1009BA420 /* PiyoSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PiyoSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7AF6161247C03E1009BA420 /* PiyoSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiyoSampleTests.swift; sourceTree = "<group>"; };
 		C7AF6163247C03E1009BA420 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7AF616C247C03E1009BA420 /* PiyoSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiyoSampleUITests.swift; sourceTree = "<group>"; };
-		C7AF616E247C03E1009BA420 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7AF617F247C0409009BA420 /* Piyo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Piyo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7AF6181247C0409009BA420 /* Piyo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Piyo.h; sourceTree = "<group>"; };
 		C7AF6182247C0409009BA420 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 				C70E981A248296FB00B3A9FA /* download.png */,
 				C7AF6149247C03DD009BA420 /* PiyoSample */,
 				C7AF6160247C03E1009BA420 /* PiyoSampleTests */,
-				C7AF616B247C03E1009BA420 /* PiyoSampleUITests */,
 				C7AF6180247C0409009BA420 /* Piyo */,
 				C7AF618D247C0409009BA420 /* PiyoTests */,
 				C7AF6148247C03DD009BA420 /* Products */,
@@ -189,15 +186,6 @@
 				C7AF6163247C03E1009BA420 /* Info.plist */,
 			);
 			path = PiyoSampleTests;
-			sourceTree = "<group>";
-		};
-		C7AF616B247C03E1009BA420 /* PiyoSampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C7AF616C247C03E1009BA420 /* PiyoSampleUITests.swift */,
-				C7AF616E247C03E1009BA420 /* Info.plist */,
-			);
-			path = PiyoSampleUITests;
 			sourceTree = "<group>";
 		};
 		C7AF6180247C0409009BA420 /* Piyo */ = {
