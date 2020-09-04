@@ -45,7 +45,9 @@ platform :ios do
   desc "Run the tests"
   private_lane :test_lib do  
     scan(project: "PiyoSample.xcodeproj",
-         scheme: "PiyoSample"
+         scheme: "PiyoSample",
+         clean: true,
+         devices: ["iPhone 8"]
         )
   end
 
