@@ -49,7 +49,7 @@ open class TwitAccount {
      */
     public func setTwiAccount(data: Data) {
         let parameter = String(data: data, encoding: .utf8)
-        self.setAccount(param: (parameter?.queryStringParameters)!)
+        self.setAccount(param: (parameter?.toDictonary)!)
     }
 
     private func setAccount(param: [String: String]) {

@@ -37,7 +37,7 @@ class TwitterApi {
 
     static func oAuthAuthorize(data: Data) {
         let responseData = String(data: data, encoding: .utf8)
-        let attributes = responseData?.queryStringParameters
+        let attributes = responseData?.toDictonary
 
         if let attrbute = attributes?["oauth_token"] {
             let url: String = ApiURL.oAuth2 + attrbute
@@ -54,7 +54,7 @@ class TwitterApi {
 
     static func access(token: String, completion: (() -> Void)? = nil) {
         let url = ApiURL.accessToken
-        guard let header = Piyo.auth(url: url, method: .post, param: token.queryStringParameters) else { return }
+        guard let header = Piyo.auth(url: url, method: .post, param: token.toDictonary) else { return }
         guard let request = Request.create(url: url, method: "POST", header: header) else { return }
 
         HttpClient.connect(request: request) { data in

@@ -19,27 +19,11 @@ extension String {
      * }
      *
      */
-    public var queryStringParameters: [String: String] {
-
+    public var toDictonary: [String: String] {
         var parameters: [String: String] = [:]
-
-        let scanner = Scanner(string: self)
-
-        var key: NSString?
-        var value: NSString?
-
-        while !scanner.isAtEnd {
-            key = nil
-            scanner.scanUpTo("=", into: &key)
-            scanner.scanString("=", into: nil)
-
-            value = nil
-            scanner.scanUpTo("&", into: &value)
-            scanner.scanString("&", into: nil)
-
-            if let key = key as String?, let value = value as String? {
-                parameters.updateValue(value, forKey: key)
-            }
+        _ = components(separatedBy: "&").compactMap{
+            let value = $0.components(separatedBy: "=")
+            parameters[value[0]] = value[1]
         }
         return parameters
     }
