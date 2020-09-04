@@ -58,9 +58,4 @@ platform :ios do
       configuration: "Release",      
     )
   end
-
-  desc "Deploy to cocoapods"
-  lane :deploy_pod do
-    pod_push
-  end
 end
