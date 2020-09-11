@@ -20,9 +20,6 @@
 		C7AF6154247C03E0009BA420 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7AF6153247C03E0009BA420 /* Assets.xcassets */; };
 		C7AF6157247C03E0009BA420 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7AF6155247C03E0009BA420 /* LaunchScreen.storyboard */; };
 		C7AF6162247C03E1009BA420 /* PiyoSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AF6161247C03E1009BA420 /* PiyoSampleTests.swift */; };
-		C7AF616D247C03E1009BA420 /* PiyoSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AF616C247C03E1009BA420 /* PiyoSampleUITests.swift */; };
-		C7AF6188247C0409009BA420 /* Piyo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AF617F247C0409009BA420 /* Piyo.framework */; };
-		C7AF618F247C0409009BA420 /* PiyoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AF618E247C0409009BA420 /* PiyoTests.swift */; };
 		C7AF6191247C0409009BA420 /* Piyo.h in Headers */ = {isa = PBXBuildFile; fileRef = C7AF6181247C0409009BA420 /* Piyo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7AF6194247C0409009BA420 /* Piyo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AF617F247C0409009BA420 /* Piyo.framework */; };
 		C7AF6195247C0409009BA420 /* Piyo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C7AF617F247C0409009BA420 /* Piyo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -38,27 +35,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		C7AF615E247C03E1009BA420 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C7AF613F247C03DD009BA420 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C7AF6146247C03DD009BA420;
-			remoteInfo = PiyoSample;
-		};
-		C7AF6169247C03E1009BA420 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C7AF613F247C03DD009BA420 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C7AF6146247C03DD009BA420;
-			remoteInfo = PiyoSample;
-		};
-		C7AF6189247C0409009BA420 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C7AF613F247C03DD009BA420 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C7AF617E247C0409009BA420;
-			remoteInfo = Piyo;
-		};
-		C7AF618B247C0409009BA420 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C7AF613F247C03DD009BA420 /* Project object */;
 			proxyType = 1;
@@ -106,13 +82,9 @@
 		C7AF615D247C03E1009BA420 /* PiyoSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PiyoSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7AF6161247C03E1009BA420 /* PiyoSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiyoSampleTests.swift; sourceTree = "<group>"; };
 		C7AF6163247C03E1009BA420 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7AF6168247C03E1009BA420 /* PiyoSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PiyoSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7AF616C247C03E1009BA420 /* PiyoSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiyoSampleUITests.swift; sourceTree = "<group>"; };
-		C7AF616E247C03E1009BA420 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7AF617F247C0409009BA420 /* Piyo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Piyo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7AF6181247C0409009BA420 /* Piyo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Piyo.h; sourceTree = "<group>"; };
 		C7AF6182247C0409009BA420 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7AF6187247C0409009BA420 /* PiyoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PiyoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7AF618E247C0409009BA420 /* PiyoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiyoTests.swift; sourceTree = "<group>"; };
 		C7AF6190247C0409009BA420 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7AF619E247CE996009BA420 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
@@ -141,25 +113,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7AF6165247C03E1009BA420 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C7AF617C247C0409009BA420 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C7AF6184247C0409009BA420 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C7AF6188247C0409009BA420 /* Piyo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,7 +148,6 @@
 				C70E981A248296FB00B3A9FA /* download.png */,
 				C7AF6149247C03DD009BA420 /* PiyoSample */,
 				C7AF6160247C03E1009BA420 /* PiyoSampleTests */,
-				C7AF616B247C03E1009BA420 /* PiyoSampleUITests */,
 				C7AF6180247C0409009BA420 /* Piyo */,
 				C7AF618D247C0409009BA420 /* PiyoTests */,
 				C7AF6148247C03DD009BA420 /* Products */,
@@ -203,9 +159,7 @@
 			children = (
 				C7AF6147247C03DD009BA420 /* PiyoSample.app */,
 				C7AF615D247C03E1009BA420 /* PiyoSampleTests.xctest */,
-				C7AF6168247C03E1009BA420 /* PiyoSampleUITests.xctest */,
 				C7AF617F247C0409009BA420 /* Piyo.framework */,
-				C7AF6187247C0409009BA420 /* PiyoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -232,15 +186,6 @@
 				C7AF6163247C03E1009BA420 /* Info.plist */,
 			);
 			path = PiyoSampleTests;
-			sourceTree = "<group>";
-		};
-		C7AF616B247C03E1009BA420 /* PiyoSampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C7AF616C247C03E1009BA420 /* PiyoSampleUITests.swift */,
-				C7AF616E247C03E1009BA420 /* Info.plist */,
-			);
-			path = PiyoSampleUITests;
 			sourceTree = "<group>";
 		};
 		C7AF6180247C0409009BA420 /* Piyo */ = {
@@ -338,24 +283,6 @@
 			productReference = C7AF615D247C03E1009BA420 /* PiyoSampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C7AF6167247C03E1009BA420 /* PiyoSampleUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C7AF6177247C03E1009BA420 /* Build configuration list for PBXNativeTarget "PiyoSampleUITests" */;
-			buildPhases = (
-				C7AF6164247C03E1009BA420 /* Sources */,
-				C7AF6165247C03E1009BA420 /* Frameworks */,
-				C7AF6166247C03E1009BA420 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C7AF616A247C03E1009BA420 /* PBXTargetDependency */,
-			);
-			name = PiyoSampleUITests;
-			productName = PiyoSampleUITests;
-			productReference = C7AF6168247C03E1009BA420 /* PiyoSampleUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		C7AF617E247C0409009BA420 /* Piyo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7AF6196247C0409009BA420 /* Build configuration list for PBXNativeTarget "Piyo" */;
@@ -374,25 +301,6 @@
 			productReference = C7AF617F247C0409009BA420 /* Piyo.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C7AF6186247C0409009BA420 /* PiyoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C7AF619A247C0409009BA420 /* Build configuration list for PBXNativeTarget "PiyoTests" */;
-			buildPhases = (
-				C7AF6183247C0409009BA420 /* Sources */,
-				C7AF6184247C0409009BA420 /* Frameworks */,
-				C7AF6185247C0409009BA420 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C7AF618A247C0409009BA420 /* PBXTargetDependency */,
-				C7AF618C247C0409009BA420 /* PBXTargetDependency */,
-			);
-			name = PiyoTests;
-			productName = PiyoTests;
-			productReference = C7AF6187247C0409009BA420 /* PiyoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -410,17 +318,9 @@
 						CreatedOnToolsVersion = 11.5;
 						TestTargetID = C7AF6146247C03DD009BA420;
 					};
-					C7AF6167247C03E1009BA420 = {
-						CreatedOnToolsVersion = 11.5;
-						TestTargetID = C7AF6146247C03DD009BA420;
-					};
 					C7AF617E247C0409009BA420 = {
 						CreatedOnToolsVersion = 11.5;
 						LastSwiftMigration = 1150;
-					};
-					C7AF6186247C0409009BA420 = {
-						CreatedOnToolsVersion = 11.5;
-						TestTargetID = C7AF6146247C03DD009BA420;
 					};
 				};
 			};
@@ -439,9 +339,7 @@
 			targets = (
 				C7AF6146247C03DD009BA420 /* PiyoSample */,
 				C7AF615C247C03E1009BA420 /* PiyoSampleTests */,
-				C7AF6167247C03E1009BA420 /* PiyoSampleUITests */,
 				C7AF617E247C0409009BA420 /* Piyo */,
-				C7AF6186247C0409009BA420 /* PiyoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -465,21 +363,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7AF6166247C03E1009BA420 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C7AF617D247C0409009BA420 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C7AF6185247C0409009BA420 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -512,14 +396,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7AF6164247C03E1009BA420 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C7AF616D247C03E1009BA420 /* PiyoSampleUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C7AF617B247C0409009BA420 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -535,14 +411,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7AF6183247C0409009BA420 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C7AF618F247C0409009BA420 /* PiyoTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -550,21 +418,6 @@
 			isa = PBXTargetDependency;
 			target = C7AF6146247C03DD009BA420 /* PiyoSample */;
 			targetProxy = C7AF615E247C03E1009BA420 /* PBXContainerItemProxy */;
-		};
-		C7AF616A247C03E1009BA420 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C7AF6146247C03DD009BA420 /* PiyoSample */;
-			targetProxy = C7AF6169247C03E1009BA420 /* PBXContainerItemProxy */;
-		};
-		C7AF618A247C0409009BA420 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C7AF617E247C0409009BA420 /* Piyo */;
-			targetProxy = C7AF6189247C0409009BA420 /* PBXContainerItemProxy */;
-		};
-		C7AF618C247C0409009BA420 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C7AF6146247C03DD009BA420 /* PiyoSample */;
-			targetProxy = C7AF618B247C0409009BA420 /* PBXContainerItemProxy */;
 		};
 		C7AF6193247C0409009BA420 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -643,7 +496,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -697,7 +550,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -715,6 +568,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D3DW67HS9F;
 				INFOPLIST_FILE = PiyoSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -735,6 +589,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D3DW67HS9F;
 				INFOPLIST_FILE = PiyoSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -788,46 +643,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PiyoSample.app/PiyoSample";
-			};
-			name = Release;
-		};
-		C7AF6178247C03E1009BA420 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D3DW67HS9F;
-				INFOPLIST_FILE = PiyoSampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.keisuke.PiyoSampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = PiyoSample;
-			};
-			name = Debug;
-		};
-		C7AF6179247C03E1009BA420 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D3DW67HS9F;
-				INFOPLIST_FILE = PiyoSampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.keisuke.PiyoSampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = PiyoSample;
 			};
 			name = Release;
 		};
@@ -892,46 +707,6 @@
 			};
 			name = Release;
 		};
-		C7AF619B247C0409009BA420 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D3DW67HS9F;
-				INFOPLIST_FILE = PiyoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.keisuke.PiyoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PiyoSample.app/PiyoSample";
-			};
-			name = Debug;
-		};
-		C7AF619C247C0409009BA420 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D3DW67HS9F;
-				INFOPLIST_FILE = PiyoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.keisuke.PiyoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PiyoSample.app/PiyoSample";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -962,29 +737,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7AF6177247C03E1009BA420 /* Build configuration list for PBXNativeTarget "PiyoSampleUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C7AF6178247C03E1009BA420 /* Debug */,
-				C7AF6179247C03E1009BA420 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C7AF6196247C0409009BA420 /* Build configuration list for PBXNativeTarget "Piyo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C7AF6197247C0409009BA420 /* Debug */,
 				C7AF6198247C0409009BA420 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C7AF619A247C0409009BA420 /* Build configuration list for PBXNativeTarget "PiyoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C7AF619B247C0409009BA420 /* Debug */,
-				C7AF619C247C0409009BA420 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
