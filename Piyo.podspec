@@ -27,6 +27,5 @@ Piyo only provides the bare essentials.
   spec.swift_version = '5.0'
   spec.source       = { :git => "https://github.com/keisukeYamagishi/Piyo.git", :tag => "#{spec.version}" }
   spec.source_files  = "Piyo", "Piyo/**/*.swift"
-  spec.exclude_files = "Piyo/PiyoKit/"
   spec.framework  = "Foundation"
 end
