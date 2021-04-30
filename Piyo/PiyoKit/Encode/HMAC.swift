@@ -36,6 +36,6 @@ public struct HMAC {
         let finalHash = SHA1(message: Data(bytes: opad + ipadAndMessageHash)).calculate().rawBytes
         let mac = finalHash
 
-        return Data(bytes: UnsafePointer<UInt8>(mac), count: mac.count)
+        return Data(bytes: mac, count: mac.count)
     }
 }
