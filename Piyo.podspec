@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "Piyo"
-  spec.version      = "1.0.1"
+  spec.version      = "1.0.2"
   spec.summary      = "Piyo is a lightweight library for Twitter OAuth."
   spec.description  = <<-DESC
   Piyo is an authentication library that allows you to access a variety of APIs offered by Twitter.
