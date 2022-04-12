@@ -71,7 +71,7 @@ class TwitterApi {
             guard let request = Request.create(url: u, method: "GET", header: Piyo.beareHeader) else { return }
             
             HttpClient.connect(request: request) { data in
-                print("\(String(data: data, encoding: .utf8))")
+                print("\(String(describing: String(data: data, encoding: .utf8)))")
             }
         }
     }

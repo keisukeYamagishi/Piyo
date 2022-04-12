@@ -14,4 +14,9 @@ class ViewController: UIViewController {
     @IBAction func pushInOAuth(_ sender: Any) {
         TwitterApi.oAuth()
     }
+    
+    @IBAction func beareToken(_ sender: Any) {
+        TwitterApi.beare()
+    }
+    
 }
