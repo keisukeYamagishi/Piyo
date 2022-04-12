@@ -62,13 +62,27 @@ open class Piyo {
         return nil
     }
 
+    public static func beare() -> URLRequest? {
+        let url = ApiURL.beareToken
+        let credential = URI.credentials
+        let header: [String: String] = ["Authorization": "Basic " + credential,
+                                        "Content-Type": "application/x-www-form-urlencoded; charset=utf8"]
+        let parameter = ["grant_type": "client_credentials"]
+        return Request.create(url: url, header: header, parameter: parameter)
+    }
+
     /*
      * Authenticate: Bearer
      * Header: Authorization Bearer
      * Twitter Followe list
      *
      */
-    public func follwerHeader(beare: String) -> [String: String] {
-        return ["Authorization": "Bearer " + beare]
+    @inlinable
+    public static var beareHeader: [String: String] {
+        ["Authorization": "Bearer " + TwitterKey.shared.beareToken]
+    }
+
+    public static func setBeareToken(_ data: Data) {
+        TwitterKey.shared.setBeareToken(data: data)
     }
 }

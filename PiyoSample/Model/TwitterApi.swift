@@ -63,6 +63,19 @@ class TwitterApi {
         }
     }
 
+    static func beare() {
+        guard let request = Piyo.beare() else { return }
+        HttpClient.connect(request: request) { data in
+            Piyo.setBeareToken(data)
+            let u = "https://api.twitter.com/1.1/search/tweets.json?q=nasa"
+            guard let request = Request.create(url: u, method: "GET", header: Piyo.beareHeader) else { return }
+            
+            HttpClient.connect(request: request) { data in
+                print("\(String(data: data, encoding: .utf8))")
+            }
+        }
+    }
+
     static func user(completion: @escaping (_ user: Data) -> Void) {
         let url = ApiURL.user
         let param = ["user_id": TwitAccount.shared.twitter.userId]

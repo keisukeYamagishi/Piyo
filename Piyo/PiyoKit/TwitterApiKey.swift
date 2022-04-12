@@ -19,19 +19,20 @@ public struct TwitterApi {
 }
 
 open class TwitterKey {
-
-    public static let shared: TwitterKey = TwitterKey()
-    public var api: TwitterApi = TwitterApi()
-    public var beareToken: String? = ""
+    public static let shared = TwitterKey()
+    public var api = TwitterApi()
+    public var beareToken: String = ""
 
     private init() {}
 
     public func setBeareToken(data: Data) {
         do {
-            guard let beare = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String] else {
+            guard let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String],
+                  let token = dictionary["access_token"]
+            else {
                 return
             }
-            self.beareToken = beare["access_token"]
+            beareToken = token
         } catch {
             print(error)
         }

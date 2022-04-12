@@ -98,14 +98,21 @@ extension Dictionary {
 }
 
 public class URI {
+    public static func encode(param: [String: String]) -> String {
+        return URI().encode(param: param)
+    }
+
+    public func encode(param: [String: String]) -> String {
+        return param.map { "\($0)=\($1.percentEncode())" }.joined(separator: "&")
+    }
 
     /*
      * Base64 encode with comsumer key and comsmer secret
      * Twitter Beare token
      */
     public static var credentials: String {
-        let encodedKey = TwitterKey.shared.api.key.percentEncode() //comsumerKey.UrlEncode()
-        let encodedSecret = TwitterKey.shared.api.secret.percentEncode() //comsumerSecret.UrlEncode()
+        let encodedKey = TwitterKey.shared.api.key.percentEncode() // comsumerKey.UrlEncode()
+        let encodedSecret = TwitterKey.shared.api.secret.percentEncode() // comsumerSecret.UrlEncode()
         let bearerTokenCredentials = "\(encodedKey):\(encodedSecret)"
         guard let data = bearerTokenCredentials.data(using: .utf8) else {
             return ""
