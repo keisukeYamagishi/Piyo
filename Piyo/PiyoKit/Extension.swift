@@ -95,11 +95,11 @@ public extension Dictionary {
 
 public class URI {
     public static func encode(param: [String: String]) -> String {
-        return URI().encode(param: param)
+        URI().encode(param: param)
     }
 
     public func encode(param: [String: String]) -> String {
-        return param.map { "\($0)=\($1.percentEncode())" }.joined(separator: "&")
+        param.map { "\($0)=\($1.percentEncode())" }.joined(separator: "&")
     }
 
     /*
@@ -117,7 +117,7 @@ public class URI {
     }
 
     public static func twitterEncode(param: [String: String]) -> String {
-        return URI().twitterEncode(param: param)
+        URI().twitterEncode(param: param)
     }
 
     /*

@@ -14,15 +14,15 @@ class OAuthKit {
         static let signatureMethod = "HMAC-SHA1"
     }
 
-    public static func authorizationHeader(for url: URL,
-                                           method: String,
-                                           param: [String: Any],
-                                           isMediaUpload: Bool = false) -> String
+    static func authorizationHeader(for url: URL,
+                                    method: String,
+                                    param: [String: Any],
+                                    isMediaUpload: Bool = false) -> String
     {
-        return OAuthKit().authorizationHeader(for: url,
-                                              method: method,
-                                              parameters: param,
-                                              isMediaUpload: isMediaUpload)
+        OAuthKit().authorizationHeader(for: url,
+                                       method: method,
+                                       parameters: param,
+                                       isMediaUpload: isMediaUpload)
     }
 
     /*
@@ -30,10 +30,10 @@ class OAuthKit {
      *
      *
      */
-    public func authorizationHeader(for url: URL,
-                                    method: String,
-                                    parameters: [String: Any],
-                                    isMediaUpload: Bool) -> String
+    func authorizationHeader(for url: URL,
+                             method: String,
+                             parameters: [String: Any],
+                             isMediaUpload: Bool) -> String
     {
         var authorization: [String: Any] = [:]
         authorization["oauth_version"] = OAuth.version
@@ -72,9 +72,9 @@ class OAuthKit {
      * create signature value
      *
      */
-    public func oAuthSignature(for url: URL,
-                               method: String,
-                               parameters: [String: Any]) -> String
+    func oAuthSignature(for url: URL,
+                        method: String,
+                        parameters: [String: Any]) -> String
     {
         let tokenSecret = TwitterKey.shared.user.oAuth.secret
         let encodedConsumerSecret = TwitterKey.shared.api.secret.percentEncode()

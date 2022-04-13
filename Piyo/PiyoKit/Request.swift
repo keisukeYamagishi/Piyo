@@ -9,9 +9,9 @@
 import Foundation
 
 class Request {
-    public static func create(url: String,
-                              header: [String: String],
-                              parameter: [String: String]? = nil) -> URLRequest?
+    static func create(url: String,
+                       header: [String: String],
+                       parameter: [String: String]? = nil) -> URLRequest?
     {
         do {
             var request = try URLRequest(url: url.toURL())

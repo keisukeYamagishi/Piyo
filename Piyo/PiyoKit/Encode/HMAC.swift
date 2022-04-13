@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum HMAC {
+enum HMAC {
     internal static func sha1(key: Data, message: Data) -> Data? {
         var key = key.rawBytes
         let message = message.rawBytes
