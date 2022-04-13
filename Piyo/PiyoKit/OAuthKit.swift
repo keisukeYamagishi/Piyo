@@ -8,33 +8,8 @@
 
 import Foundation
 
-open class OAuthKit {
-    public var consumerSecret: String!
-    public var tokenSecret: String!
-
-    /*
-     * initialize function
-     * initialize menbers value
-     * comsumerSecret: String
-     * tokenSecret: String
-     */
-    public init() {
-        consumerSecret = ""
-        tokenSecret = ""
-    }
-
-    /*
-     * initialize function
-     * initialize members value
-     * set comsumerSecret value
-     * set tokenSecret value
-     */
-    public init(comsumersecret: String, tokenSecret: String) {
-        consumerSecret = comsumersecret
-        self.tokenSecret = tokenSecret
-    }
-
-    public enum OAuth {
+class OAuthKit {
+    enum OAuth {
         static let version = "1.0"
         static let signatureMethod = "HMAC-SHA1"
     }
@@ -67,7 +42,7 @@ open class OAuthKit {
         authorization["oauth_timestamp"] = String(Int(Date().timeIntervalSince1970))
         authorization["oauth_nonce"] = UUID().uuidString
 
-        authorization["oauth_token"] ??= TwitAccount.shared.twitter.oAuth.token
+        authorization["oauth_token"] ??= TwitterKey.shared.user.oAuth.token
 
         for (key, value) in parameters where key.hasPrefix("oauth_") {
             authorization.updateValue(value, forKey: key)
@@ -77,7 +52,7 @@ open class OAuthKit {
 
         let final = isMediaUpload ? authorization : combinedParameters
 
-        authorization["oauth_signature"] = oauthSignature(for: url, method: method, parameters: final)
+        authorization["oauth_signature"] = oAuthSignature(for: url, method: method, parameters: final)
 
         let authorizationParameter = authorization.encodedQuery(using: .utf8)
         let authorizationParameterComponents = authorizationParameter.components(separatedBy: "&").sorted()
@@ -97,11 +72,11 @@ open class OAuthKit {
      * create signature value
      *
      */
-    public func oauthSignature(for url: URL,
+    public func oAuthSignature(for url: URL,
                                method: String,
                                parameters: [String: Any]) -> String
     {
-        let tokenSecret = TwitAccount.shared.twitter.oAuth.secret
+        let tokenSecret = TwitterKey.shared.user.oAuth.secret
         let encodedConsumerSecret = TwitterKey.shared.api.secret.percentEncode()
         let signingKey = "\(encodedConsumerSecret)&\(tokenSecret)"
         let parameterComponents = parameters.encodedQuery(using: .utf8).components(separatedBy: "&").sorted()

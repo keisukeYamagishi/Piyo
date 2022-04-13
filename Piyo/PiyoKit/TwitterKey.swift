@@ -18,9 +18,10 @@ public struct TwitterApi {
     public var secret: String = ""
 }
 
-open class TwitterKey {
+public class TwitterKey {
     public static let shared = TwitterKey()
     public var api = TwitterApi()
+    public var user = TwiterUser()
     public var beareToken: String = ""
 
     private init() {}
@@ -36,5 +37,21 @@ open class TwitterKey {
         } catch {
             print(error)
         }
+    }
+
+    /*
+     * set Twitter' user info
+     *
+     */
+    public func setTwiAccount(data: Data) {
+        guard let parameter = String(data: data, encoding: .utf8) else { return }
+        setAccount(param: parameter.toDictionary)
+    }
+
+    private func setAccount(param: [String: String]) {
+        user.screenName = param["screen_name"]!
+        user.userId = param["user_id"]!
+        user.oAuth.token = param["oauth_token"]!
+        user.oAuth.secret = param["oauth_token_secret"]!
     }
 }

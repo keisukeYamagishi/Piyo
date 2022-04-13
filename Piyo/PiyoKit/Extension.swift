@@ -18,7 +18,7 @@ public extension String {
      * }
      *
      */
-    var toDictonary: [String: String] {
+    var toDictionary: [String: String] {
         var parameters: [String: String] = [:]
         _ = components(separatedBy: "&").compactMap {
             let value = $0.components(separatedBy: "=")
@@ -35,7 +35,7 @@ public extension String {
     }
 }
 
-public extension Data {
+extension Data {
     var rawBytes: [UInt8] {
         let count = self.count / MemoryLayout<UInt8>.size
         var bytesArray = [UInt8](repeating: 0, count: count)
@@ -52,13 +52,13 @@ public extension Data {
     }
 }
 
-public extension Int {
+extension Int {
     func bytes(_ totalBytes: Int = MemoryLayout<Int>.size) -> [UInt8] {
         return arrayOfBytes(self, length: totalBytes)
     }
 }
 
-public func arrayOfBytes<T>(_ value: T, length: Int? = nil) -> [UInt8] {
+func arrayOfBytes<T>(_ value: T, length: Int? = nil) -> [UInt8] {
     let totalBytes = length ?? (MemoryLayout<T>.size * 8)
     let valuePointer = UnsafeMutablePointer<T>.allocate(capacity: 1)
     valuePointer.pointee = value
