@@ -13,7 +13,7 @@ func rotateLeft(_ v: UInt16, n: UInt16) -> UInt16 {
 }
 
 func rotateLeft(_ v: UInt32, n: UInt32) -> UInt32 {
-    return ((v << n) & 0xFFFFFFFF) | (v >> (32 - n))
+    return ((v << n) & 0xFFFF_FFFF) | (v >> (32 - n))
 }
 
 func rotateLeft(_ x: UInt64, n: UInt64) -> UInt64 {
@@ -22,8 +22,8 @@ func rotateLeft(_ x: UInt64, n: UInt64) -> UInt64 {
 
 infix operator +|
 
-func +| <K, V>(left: Dictionary<K, V>, right: Dictionary<K, V>) -> Dictionary<K, V> {
-    var map = Dictionary<K, V>()
+func +| <K, V>(left: [K: V], right: [K: V]) -> [K: V] {
+    var map = [K: V]()
     for (k, v) in left {
         map[k] = v
     }
@@ -34,11 +34,12 @@ func +| <K, V>(left: Dictionary<K, V>, right: Dictionary<K, V>) -> Dictionary<K,
 }
 
 // If `rhs` is not `nil`, assign it to `lhs`.
-infix operator ??= : AssignmentPrecedence // { associativity right precedence 90 assignment } // matches other assignment operators
+infix operator ??=: AssignmentPrecedence // { associativity right precedence 90 assignment } // matches other assignment operators
 
 /// If `rhs` is not `nil`, assign it to `lhs`.
-func ??=<T>(lhs: inout T?, rhs: T?) {
+func ??= <T>(lhs: inout T?, rhs: T?) {
     guard let rhs = rhs else { return }
     lhs = rhs
 }
+
 // swiftlint:enable all

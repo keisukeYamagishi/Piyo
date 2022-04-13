@@ -18,5 +18,4 @@ class ViewController: UIViewController {
     @IBAction func beareToken(_ sender: Any) {
         TwitterApi.beare()
     }
-    
 }

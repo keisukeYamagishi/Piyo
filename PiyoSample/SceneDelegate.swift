@@ -59,7 +59,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         guard let userInfo = try JSONSerialization.jsonObject(with: user,
                                                                               options: option) as? [String: Any] else { return }
                         print(userInfo)
-                        TwitterApi.tweet(tweet: "Hello,,,,,,,,")
+                        TwitterApi.tweetWithMedia(tweet: "Hello,,,,,,,,")
                     } catch {
                         print("Exception: \(error)")
                     }

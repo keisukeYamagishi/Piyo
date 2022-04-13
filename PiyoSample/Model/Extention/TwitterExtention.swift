@@ -77,34 +77,6 @@ open class Request {
         }
         return nil
     }
-
-    public static func tweet(url: String, tweet: String) -> URLRequest? {
-        do {
-            var request = try URLRequest(url: url.toURL())
-            let parameters: [String: String] = ["status": tweet]
-            let value: String = URI.twitterEncode(param: parameters)
-            let body: Data = value.data(using: .utf8)! as Data
-            guard let signature = Piyo.signature(url: url,
-                                                 method: .post,
-                                                 param: parameters) else {
-                return nil
-            }
-
-            let header: [String: String] = ["Authorization": signature,
-                                            "Content-Length": body.count.description]
-
-            for (key, value) in header {
-                request.setValue(value, forHTTPHeaderField: key)
-            }
-
-            request.httpBody = body
-            request.httpMethod = "POST"
-            return request
-        } catch {
-            print(error)
-        }
-        return nil
-    }
 }
 
 extension Multipart {
