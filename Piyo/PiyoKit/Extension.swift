@@ -8,8 +8,7 @@
 
 import Foundation
 
-extension String {
-
+public extension String {
     /*
      * Dictionary Converts a value to a string.
      * key=value&key=value
@@ -19,16 +18,16 @@ extension String {
      * }
      *
      */
-    public var toDictonary: [String: String] {
+    var toDictonary: [String: String] {
         var parameters: [String: String] = [:]
-        _ = components(separatedBy: "&").compactMap{
+        _ = components(separatedBy: "&").compactMap {
             let value = $0.components(separatedBy: "=")
             parameters[value[0]] = value[1]
         }
         return parameters
     }
 
-    public func toURL() throws -> URL {
+    func toURL() throws -> URL {
         guard let url = URL(string: self) else {
             throw NSError(domain: "Invalid url", code: 10001)
         }
@@ -36,27 +35,25 @@ extension String {
     }
 }
 
-extension Data {
-
-    public var rawBytes: [UInt8] {
+public extension Data {
+    var rawBytes: [UInt8] {
         let count = self.count / MemoryLayout<UInt8>.size
         var bytesArray = [UInt8](repeating: 0, count: count)
         (self as NSData).getBytes(&bytesArray, length: count * MemoryLayout<UInt8>.size)
         return bytesArray
     }
 
-    public init(bytes: [UInt8]) {
+    init(bytes: [UInt8]) {
         self.init(bytes: bytes, count: bytes.count)
     }
 
-    public mutating func append(_ bytes: [UInt8]) {
-        self.append(bytes, count: bytes.count)
+    mutating func append(_ bytes: [UInt8]) {
+        append(bytes, count: bytes.count)
     }
 }
 
-extension Int {
-
-    public func bytes(_ totalBytes: Int = MemoryLayout<Int>.size) -> [UInt8] {
+public extension Int {
+    func bytes(_ totalBytes: Int = MemoryLayout<Int>.size) -> [UInt8] {
         return arrayOfBytes(self, length: totalBytes)
     }
 }
@@ -68,7 +65,7 @@ public func arrayOfBytes<T>(_ value: T, length: Int? = nil) -> [UInt8] {
 
     let bytesPointer = valuePointer.withMemoryRebound(to: UInt8.self, capacity: 1) { $0 }
     var bytes = [UInt8](repeating: 0, count: totalBytes)
-    for byte in 0..<min(MemoryLayout<T>.size, totalBytes) {
+    for byte in 0 ..< min(MemoryLayout<T>.size, totalBytes) {
         bytes[totalBytes - 1 - byte] = (bytesPointer + byte).pointee
     }
 
@@ -78,13 +75,12 @@ public func arrayOfBytes<T>(_ value: T, length: Int? = nil) -> [UInt8] {
     return bytes
 }
 
-extension Dictionary {
-
+public extension Dictionary {
     /*
      * encoded Dictionary's value
      *
      */
-    public func encodedQuery(using encoding: String.Encoding) -> String {
+    func encodedQuery(using _: String.Encoding) -> String {
         var parts = [String]()
 
         for (key, value) in self {
@@ -120,7 +116,7 @@ public class URI {
         return data.base64EncodedString(options: [])
     }
 
-    public static func twitterEncode (param: [String: String]) -> String {
+    public static func twitterEncode(param: [String: String]) -> String {
         return URI().twitterEncode(param: param)
     }
 
@@ -129,42 +125,41 @@ public class URI {
      * URL encoded into a character string and returns it.
      */
     public func twitterEncode(param: [String: String]) -> String {
+        var parameter = String()
 
-        var parameter: String = String()
+        var keys = Array(param.keys)
 
-        var keys: Array = Array(param.keys)
+        keys.sort { $0 < $1 }
 
-        keys.sort {$0 < $1}
-
-        for index in 0..<keys.count {
+        for index in 0 ..< keys.count {
             let val: String
-            if "oauth_callback" == keys[index]
-                || "oauth_signature" == keys[index] {
+            if keys[index] == "oauth_callback"
+                || keys[index] == "oauth_signature"
+            {
                 val = param[keys[index]]!
             } else {
                 val = (param[keys[index]]?.percentEncode())!
             }
             if index == (keys.count - 1) {
-                parameter += keys[index] + "=" +  val
+                parameter += keys[index] + "=" + val
             } else {
-                parameter += keys[index] + "=" +  val + "&"
+                parameter += keys[index] + "=" + val + "&"
             }
         }
         return parameter
     }
 }
 
-extension String {
-
+public extension String {
     /*
      * PersentEncode
      */
-    public func percentEncode(_ encodeAll: Bool = false) -> String {
+    func percentEncode(_ encodeAll: Bool = false) -> String {
         var allowedCharacterSet: CharacterSet = .urlQueryAllowed
         allowedCharacterSet.remove(charactersIn: "\n:#/?@!$&'()*+,;=")
         if !encodeAll {
             allowedCharacterSet.insert(charactersIn: "[]")
         }
-        return self.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)!
+        return addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)!
     }
 }

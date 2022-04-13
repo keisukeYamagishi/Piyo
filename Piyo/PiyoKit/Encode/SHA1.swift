@@ -10,12 +10,11 @@ import Foundation
 
 // swiftlint:disable all
 struct SHA1 {
-
     var message: Data
 
     /** Common part for hash calculation. Prepare header data. */
-    func prepare(_ len:Int = 64) -> Data {
-        var tmpMessage: Data = self.message
+    func prepare(_ len: Int = 64) -> Data {
+        var tmpMessage: Data = message
 
         // Step 1. Append Padding Bits
         tmpMessage.append([0x80]) // append one bit (Byte with one bit) to message
@@ -29,12 +28,11 @@ struct SHA1 {
     }
 
     func calculate() -> Data {
-
-        //var tmpMessage = self.prepare()
+        // var tmpMessage = self.prepare()
         let length = 64
-        let hash: [UInt32] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0]
+        let hash: [UInt32] = [0x6745_2301, 0xEFCD_AB89, 0x98BA_DCFE, 0x1032_5476, 0xC3D2_E1F0]
 
-        var tmpMessage: Data = self.message
+        var tmpMessage: Data = message
 
         // Step 1. Append Padding Bits
         tmpMessage.append([0x80]) // append one bit (Byte with one bit) to message
@@ -48,70 +46,66 @@ struct SHA1 {
         var mutableHash = hash
 
         // append message length, in a 64-bit big-endian integer. So now the message length is a multiple of 512 bits.
-        tmpMessage.append((self.message.count * 8).bytes(64 / 8))
+        tmpMessage.append((message.count * 8).bytes(64 / 8))
 
         // Process the message in successive 512-bit chunks:
         let chunkSizeBytes = 512 / 8 // 64
         var leftMessageBytes = tmpMessage.count
-        var i = 0;
+        var i = 0
         while i < tmpMessage.count {
-
-            let chunk = tmpMessage.subdata(in: i..<i+min(chunkSizeBytes, leftMessageBytes))
+            let chunk = tmpMessage.subdata(in: i ..< i + min(chunkSizeBytes, leftMessageBytes))
             // break chunk into sixteen 32-bit words M[j], 0 ≤ j ≤ 15, big-endian
             // Extend the sixteen 32-bit words into eighty 32-bit words:
             var M = [UInt32](repeating: 0, count: 80)
-            for x in 0..<M.count {
-                switch (x) {
-                case 0...15:
+            for x in 0 ..< M.count {
+                switch x {
+                case 0 ... 15:
                     var le: UInt32 = 0
-                    let range = NSRange(location:x * MemoryLayout<UInt32>.size, length: MemoryLayout<UInt32>.size)
+                    let range = NSRange(location: x * MemoryLayout<UInt32>.size, length: MemoryLayout<UInt32>.size)
                     (chunk as NSData).getBytes(&le, range: range)
                     M[x] = le.bigEndian
-                    break
                 default:
-                    M[x] = rotateLeft(M[x-3] ^ M[x-8] ^ M[x-14] ^ M[x-16], n: 1)
-                    break
+                    M[x] = rotateLeft(M[x - 3] ^ M[x - 8] ^ M[x - 14] ^ M[x - 16], n: 1)
                 }
             }
 
             var A = mutableHash[0], B = mutableHash[1], C = mutableHash[2], D = mutableHash[3], E = mutableHash[4]
 
             // Main loop
-            for j in 0...79 {
+            for j in 0 ... 79 {
                 var f: UInt32 = 0
                 var k: UInt32 = 0
 
                 switch j {
-                case 0...19:
+                case 0 ... 19:
                     f = (B & C) | ((~B) & D)
-                    k = 0x5A827999
-                case 20...39:
+                    k = 0x5A82_7999
+                case 20 ... 39:
                     f = B ^ C ^ D
-                    k = 0x6ED9EBA1
-                case 40...59:
+                    k = 0x6ED9_EBA1
+                case 40 ... 59:
                     f = (B & C) | (B & D) | (C & D)
-                    k = 0x8F1BBCDC
-                case 60...79:
+                    k = 0x8F1B_BCDC
+                case 60 ... 79:
                     f = B ^ C ^ D
-                    k = 0xCA62C1D6
+                    k = 0xCA62_C1D6
                 default:
                     break
                 }
 
-                let temp = (rotateLeft(A,n: 5) &+ f &+ E &+ M[j] &+ k) & 0xffffffff
+                let temp = (rotateLeft(A, n: 5) &+ f &+ E &+ M[j] &+ k) & 0xFFFF_FFFF
                 E = D
                 D = C
                 C = rotateLeft(B, n: 30)
                 B = A
                 A = temp
-
             }
 
-            mutableHash[0] = (mutableHash[0] &+ A) & 0xffffffff
-            mutableHash[1] = (mutableHash[1] &+ B) & 0xffffffff
-            mutableHash[2] = (mutableHash[2] &+ C) & 0xffffffff
-            mutableHash[3] = (mutableHash[3] &+ D) & 0xffffffff
-            mutableHash[4] = (mutableHash[4] &+ E) & 0xffffffff
+            mutableHash[0] = (mutableHash[0] &+ A) & 0xFFFF_FFFF
+            mutableHash[1] = (mutableHash[1] &+ B) & 0xFFFF_FFFF
+            mutableHash[2] = (mutableHash[2] &+ C) & 0xFFFF_FFFF
+            mutableHash[3] = (mutableHash[3] &+ D) & 0xFFFF_FFFF
+            mutableHash[4] = (mutableHash[4] &+ E) & 0xFFFF_FFFF
 
             i = i + chunkSizeBytes
             leftMessageBytes -= chunkSizeBytes
@@ -126,4 +120,5 @@ struct SHA1 {
         return mutableBuff as Data
     }
 }
+
 // swiftlint:enable all

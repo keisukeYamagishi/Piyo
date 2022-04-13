@@ -18,17 +18,7 @@ class TwitterApi {
     }
 
     static func oAuthRequestToken(completion: @escaping (_ data: Data) -> Void) {
-
-        guard let authHeader = Piyo.auth(url: ApiURL.oAuthUrl,
-                                         method: .post,
-                                         param: ["oauth_callback": ApiURL.urlScheme]) else {
-                                            return
-        }
-
-        guard let request = Request.create(url: ApiURL.oAuthUrl,
-                                           method: "POST",
-                                           header: authHeader) else { return }
-
+        guard let request = Piyo.oAuth(ApiURL.urlScheme) else { return }
         HttpClient.connect(request: request,
                         completion: { data in
                             completion(data)
@@ -36,27 +26,18 @@ class TwitterApi {
     }
 
     static func oAuthAuthorize(data: Data) {
-        let responseData = String(data: data, encoding: .utf8)
-        let attributes = responseData?.toDictonary
-
-        if let attrbute = attributes?["oauth_token"] {
-            let url: String = ApiURL.oAuth2 + attrbute
-            let queryURL = URL(string: url)!
+        guard let url = Piyo.oAuthAuthorize(data) else { return }
             DispatchQueue.main.async {
                 if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(queryURL, options: [:])
+                    UIApplication.shared.open(url, options: [:])
                 } else {
-                    UIApplication.shared.openURL(queryURL)
+                    UIApplication.shared.openURL(url)
                 }
             }
-        }
     }
 
     static func access(token: String, completion: (() -> Void)? = nil) {
-        let url = ApiURL.accessToken
-        guard let header = Piyo.auth(url: url, method: .post, param: token.toDictonary) else { return }
-        guard let request = Request.create(url: url, method: "POST", header: header) else { return }
-
+        guard let request = Piyo.accessToken(token) else { return }
         HttpClient.connect(request: request) { data in
                             TwitAccount.shared.setTwiAccount(data: data)
                             completion?()
@@ -96,13 +77,8 @@ class TwitterApi {
 
     static func tweetWithMedia(tweet: String) {
         guard let request = Request.tweetWithMedia(url: ApiURL.tweetWithMedia,
-                                          tweet: "Hi! Tweet",
-                                          img: UIImage(named: "download.png")!) else { return }
-        HttpClient.connect(request: request)
-    }
-
-    static func tweet(tweet: String) {
-        guard let request = Request.tweet(url: ApiURL.tweet, tweet: tweet) else { return }
+                                          tweet: "Piyo🐦 Piyo🐦.\n A lightweight Twitter OAuth library🐦\nhttps://github.com/keisukeYamagishi/Piyo",
+                                          img: UIImage(named: "shichimi.png")!) else { return }
         HttpClient.connect(request: request)
     }
 }
