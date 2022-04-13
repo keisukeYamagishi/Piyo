@@ -82,7 +82,7 @@ open class Piyo {
      */
     public static func oAuthAuthorize(_ data: Data) -> URL? {
         let responseData = String(data: data, encoding: .utf8)
-        let attributes = responseData?.toDictonary
+        let attributes = responseData?.toDictionary
 
         guard let attribute = attributes?["oauth_token"] else { return nil }
         let url = ApiURL.oAuthAuthorize + attribute
@@ -99,7 +99,7 @@ open class Piyo {
         let url = ApiURL.accessToken
         guard let header = Piyo.auth(url: url,
                                      method: .post,
-                                     param: token.toDictonary) else { return nil }
+                                     param: token.toDictionary) else { return nil }
         guard let request = Request.create(url: url,
                                            header: header) else { return nil }
         return request

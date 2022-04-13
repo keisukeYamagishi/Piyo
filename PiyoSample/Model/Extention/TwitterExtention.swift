@@ -9,7 +9,7 @@
 import UIKit
 import Piyo
 
-open class Request {
+class Request {
 
     public static func create(url: String,
                               method: String,
@@ -101,7 +101,7 @@ extension Multipart {
     }
 }
 
-open class Multipart {
+class Multipart {
 
     public var bundary: String
     public var uuid: String
