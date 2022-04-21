@@ -6,24 +6,19 @@
 //  Copyright © 2018 keisuke yamagishi. All rights reserved.
 //
 
-import UIKit
 import Piyo
+import UIKit
 
 class Request {
-
     public static func create(url: String,
                               method: String,
-                              header: [String: String], parameter: [String: String
-                              
-                              
-                              
-                              ]? = nil) -> URLRequest? {
+                              header: [String: String], parameter: [String: String]? = nil) -> URLRequest?
+    {
         do {
             var request = try URLRequest(url: url.toURL())
             request.httpMethod = method
-            
+
             if let para = parameter {
-                
                 let value: String = URI.encode(param: para)
                 guard let data = value.data(using: .utf8) as Data? else { return nil }
 
@@ -36,7 +31,7 @@ class Request {
                 }
                 request.httpBody = data
             }
-            
+
             for (key, value) in header {
                 request.setValue(value, forHTTPHeaderField: key)
             }
@@ -48,7 +43,6 @@ class Request {
     }
 
     public static func tweetWithMedia(url: String, tweet: String, img: UIImage = UIImage()) -> URLRequest? {
-
         do {
             var request = try URLRequest(url: url.toURL())
             var parameters: [String: String] = [:]
@@ -62,8 +56,8 @@ class Request {
                 return nil
             }
             let header: [String: String] = ["Content-Type": "multipart/form-data; boundary=\(tweetMultipart.bundary)",
-                "Authorization": signature,
-                "Content-Length": body.count.description]
+                                            "Authorization": signature,
+                                            "Content-Length": body.count.description]
 
             for (key, value) in header {
                 request.setValue(value, forHTTPHeaderField: key)
@@ -80,10 +74,9 @@ class Request {
 }
 
 extension Multipart {
-    func tweetMultipart (param: [String: String], img: UIImage) -> Data {
-
-        var body: Data = Data()
-        let multipartData = Multipart.mulipartContent(with: self.bundary,
+    func tweetMultipart(param: [String: String], img: UIImage) -> Data {
+        var body = Data()
+        let multipartData = Multipart.mulipartContent(with: bundary,
                                                       data: img.pngData()!,
                                                       fileName: "media.jpg",
                                                       parameter: "media[]",
@@ -91,31 +84,31 @@ extension Multipart {
         body.append(multipartData)
 
         for (key, value): (String, String) in param {
-            body.append("\r\n--\(self.bundary)\r\n".data(using: .utf8)!)
+            body.append("\r\n--\(bundary)\r\n".data(using: .utf8)!)
             body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8)!)
             body.append("\(value)".data(using: .utf8)!)
         }
 
-        body.append("\r\n--\(self.bundary)--\r\n".data(using: .utf8)!)
+        body.append("\r\n--\(bundary)--\r\n".data(using: .utf8)!)
         return body
     }
 }
 
 class Multipart {
-
     public var bundary: String
     public var uuid: String
 
     public init() {
-        self.uuid = UUID().uuidString
-        self.bundary = String(format: "----\(self.uuid)")
+        uuid = UUID().uuidString
+        bundary = String(format: "----\(uuid)")
     }
 
     public static func mulipartContent(with boundary: String,
                                        data: Data,
                                        fileName: String?,
                                        parameter: String,
-                                       mimeType mimeTypeOrNil: String?) -> Data {
+                                       mimeType mimeTypeOrNil: String?) -> Data
+    {
         let mimeType = mimeTypeOrNil ?? "application/octet-stream"
         let FCD = fileName != nil ? "filename=\"\(fileName!)\"" : ""
         let contentDisposition = "Content-Disposition: form-data; name=\"\(parameter)\"; \(FCD)\r\n"
