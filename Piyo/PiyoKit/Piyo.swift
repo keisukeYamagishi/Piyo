@@ -12,6 +12,7 @@ open class Piyo {
     /*
      * Http method
      */
+    @frozen
     public enum Method: String {
         case get = "GET"
         case head = "HEAD"
@@ -27,6 +28,7 @@ open class Piyo {
      * Authenticate:
      * Header: Authorization request token
      */
+    @inlinable
     public static func auth(url: String,
                             method: Method,
                             param: [String: String],
@@ -55,7 +57,7 @@ open class Piyo {
         do {
             return try OAuthKit.authorizationHeader(for: url.toURL(),
                                                     method: method.rawValue,
-                                                    param: param,
+                                                    parameters: param,
                                                     isMediaUpload: upload)
         } catch {
             print(error)
@@ -135,6 +137,7 @@ open class Piyo {
      * Twitter
      *
      */
+    @inlinable
     public static func setBeareToken(_ data: Data) {
         TwitterKey.shared.setBeareToken(data: data)
     }

@@ -9,12 +9,11 @@
 import Foundation
 
 class InfoPlist {
-
     static let urlScheme: String? = {
         let infoPlist = Bundle.main.infoDictionary
         guard let urlType: [Any] = infoPlist?["CFBundleURLTypes"] as? [Any] else { return nil }
         guard let items: [String: AnyObject] = urlType[0] as? [String: AnyObject] else { return nil }
-        guard let urlSchemes: [String] = items["CFBundleURLSchemes"] as? [String]  else { return nil }
+        guard let urlSchemes: [String] = items["CFBundleURLSchemes"] as? [String] else { return nil }
         if let urlScheme = urlSchemes.first {
             return urlScheme
         }

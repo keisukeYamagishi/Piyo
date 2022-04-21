@@ -6,14 +6,11 @@
 //  Copyright © 2020 Shichimitoucarashi. All rights reserved.
 //
 
-import XCTest
 @testable import PiyoSample
+import XCTest
 
 class PiyoSampleTests: XCTestCase {
+    override func setUp() {}
 
-    override func setUp() {
-        
-    }
-    func testExample() throws {
-    }
+    func testExample() throws {}
 }

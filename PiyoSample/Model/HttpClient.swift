@@ -6,14 +6,14 @@
 //  Copyright © 2020 Shichimitoucarashi. All rights reserved.
 //
 
-import UIKit
 import Piyo
+import UIKit
 
 class HttpClient {
-
     static func connect(request: URLRequest,
-                        completion: ((Data) -> Void)? = nil) {
-        let task = URLSession.shared.dataTask(with: request) { (data, responce, error) in
+                        completion: ((Data) -> Void)? = nil)
+    {
+        let task = URLSession.shared.dataTask(with: request) { data, responce, error in
             // ここのエラーはクライアントサイドのエラー(ホストに接続できないなど)
             if let error = error {
                 print("クライアントエラー: \(error.localizedDescription) \n")

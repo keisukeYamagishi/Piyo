@@ -13,6 +13,7 @@ struct SHA1 {
     var message: Data
 
     /** Common part for hash calculation. Prepare header data. */
+    @inlinable
     func prepare(_ len: Int = 64) -> Data {
         var tmpMessage: Data = message
 
@@ -27,6 +28,7 @@ struct SHA1 {
         return tmpMessage
     }
 
+    @inlinable
     func calculate() -> Data {
         // var tmpMessage = self.prepare()
         let length = 64
