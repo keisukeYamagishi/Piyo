@@ -8,21 +8,11 @@
 
 import Foundation
 
-class OAuthKit {
+enum OAuthKit {
+    @frozen
     enum OAuth {
         static let version = "1.0"
         static let signatureMethod = "HMAC-SHA1"
-    }
-
-    static func authorizationHeader(for url: URL,
-                                    method: String,
-                                    param: [String: Any],
-                                    isMediaUpload: Bool = false) -> String
-    {
-        OAuthKit().authorizationHeader(for: url,
-                                       method: method,
-                                       parameters: param,
-                                       isMediaUpload: isMediaUpload)
     }
 
     /*
@@ -30,10 +20,11 @@ class OAuthKit {
      *
      *
      */
-    func authorizationHeader(for url: URL,
-                             method: String,
-                             parameters: [String: Any],
-                             isMediaUpload: Bool) -> String
+    @inlinable
+    public static func authorizationHeader(for url: URL,
+                                           method: String,
+                                           parameters: [String: Any],
+                                           isMediaUpload: Bool) -> String
     {
         var authorization: [String: Any] = [:]
         authorization["oauth_version"] = OAuth.version
@@ -72,9 +63,10 @@ class OAuthKit {
      * create signature value
      *
      */
-    func oAuthSignature(for url: URL,
-                        method: String,
-                        parameters: [String: Any]) -> String
+    @inlinable
+    static func oAuthSignature(for url: URL,
+                               method: String,
+                               parameters: [String: Any]) -> String
     {
         let tokenSecret = TwitterKey.shared.user.oAuth.secret
         let encodedConsumerSecret = TwitterKey.shared.api.secret.percentEncode()
