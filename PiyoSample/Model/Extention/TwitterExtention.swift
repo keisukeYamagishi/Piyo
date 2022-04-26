@@ -12,64 +12,61 @@ import UIKit
 class Request {
     public static func create(url: String,
                               method: String,
-                              header: [String: String], parameter: [String: String]? = nil) -> URLRequest?
+                              header: [String: String],
+                              parameter: [String: String]? = nil) -> URLRequest?
     {
-        do {
-            var request = try URLRequest(url: url.toURL())
-            request.httpMethod = method
+        guard let uri = URL(string: url) else { return nil }
+        var request = URLRequest(url: uri)
+        request.httpMethod = method
 
-            if let para = parameter {
-                let value: String = URI.encode(param: para)
-                guard let data = value.data(using: .utf8) as Data? else { return nil }
+        if let para = parameter {
+            let value = Request.encode(para)
+            guard let data = value.data(using: .utf8) as Data? else { return nil }
 
-                let header: [String: String] = ["Content-Type": "application/x-www-form-urlencoded",
-                                                "Accept": "application/x-www-form-urlencoded",
-                                                "Content-Length": data.count.description]
+            let header: [String: String] = ["Content-Type": "application/x-www-form-urlencoded",
+                                            "Accept": "application/x-www-form-urlencoded",
+                                            "Content-Length": data.count.description]
 
-                header.forEach {
-                    request.setValue($0.value, forHTTPHeaderField: $0.key)
-                }
-                request.httpBody = data
+            header.forEach {
+                request.setValue($0.value, forHTTPHeaderField: $0.key)
             }
-
-            for (key, value) in header {
-                request.setValue(value, forHTTPHeaderField: key)
-            }
-            return request
-        } catch {
-            print("Error: \(error)")
+            request.httpBody = data
         }
-        return nil
+
+        for (key, value) in header {
+            request.setValue(value, forHTTPHeaderField: key)
+        }
+        return request
     }
 
     public static func tweetWithMedia(url: String, tweet: String, img: UIImage = UIImage()) -> URLRequest? {
-        do {
-            var request = try URLRequest(url: url.toURL())
-            var parameters: [String: String] = [:]
-            parameters["status"] = tweet
+        guard let uri = URL(string: url) else { return nil }
+        var request = URLRequest(url: uri)
+        var parameters: [String: String] = [:]
+        parameters["status"] = tweet
 
-            let tweetMultipart = Multipart()
+        let tweetMultipart = Multipart()
 
-            let body = tweetMultipart.tweetMultipart(param: parameters, img: img)
+        let body = tweetMultipart.tweetMultipart(param: parameters, img: img)
 
-            guard let signature = Piyo.signature(url: url, method: .post, param: parameters, upload: true) else {
-                return nil
-            }
-            let header: [String: String] = ["Content-Type": "multipart/form-data; boundary=\(tweetMultipart.bundary)",
-                                            "Authorization": signature,
-                                            "Content-Length": body.count.description]
-
-            for (key, value) in header {
-                request.setValue(value, forHTTPHeaderField: key)
-            }
-
-            request.httpBody = body
-            request.httpMethod = "POST"
-            return request
-        } catch {
-            print(error)
+        guard let signature = Piyo.signature(url: url, method: .post, param: parameters, upload: true) else {
+            return nil
         }
-        return nil
+        let header: [String: String] = ["Content-Type": "multipart/form-data; boundary=\(tweetMultipart.bundary)",
+                                        "Authorization": signature,
+                                        "Content-Length": body.count.description]
+
+        for (key, value) in header {
+            request.setValue(value, forHTTPHeaderField: key)
+        }
+
+        request.httpBody = body
+        request.httpMethod = "POST"
+        return request
+    }
+    
+    static func encode(_ parameter: [String: String]) -> String {
+        parameter.map { "\($0)=\($1.percentEncode())" }.joined(separator: "&")
     }
 }
 
@@ -119,5 +116,17 @@ class Multipart {
         tempData.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
         tempData.append(data)
         return tempData
+    }
+}
+
+extension String {
+    /*
+     * PersentEncode
+     */
+    func percentEncode() -> String {
+        var allowedCharacterSet: CharacterSet = .urlQueryAllowed
+        allowedCharacterSet.remove(charactersIn: "\n:#/?@!$&'()*+,;=")
+        allowedCharacterSet.insert(charactersIn: "[]")
+        return addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)!
     }
 }

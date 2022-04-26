@@ -62,7 +62,7 @@ class TwitterApi {
     static func user(completion: @escaping (_ user: Data) -> Void) {
         let url = ApiURL.user
         let param = ["user_id": TwitterKey.shared.user.userId]
-        let query = param.encodedQuery(using: .utf8)
+        let query = Request.encode(param)
         let uri = url + (url.range(of: "?") != nil ? "&" : "?") + query
         guard let header: [String: String] = Piyo.auth(url: url,
                                                        method: .get,
