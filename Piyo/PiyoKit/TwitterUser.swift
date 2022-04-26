@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TwiterUser {
+public struct TwitterUser {
     public var oAuth = OAuth()
     public var screenName = ""
     public var userId = ""

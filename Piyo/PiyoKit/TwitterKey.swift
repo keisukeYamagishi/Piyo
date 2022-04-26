@@ -21,7 +21,7 @@ public struct TwitterApi {
 public class TwitterKey {
     public static let shared = TwitterKey()
     public var api = TwitterApi()
-    public var user = TwiterUser()
+    public var user = TwitterUser()
     public var beareToken: String = ""
 
     private init() {}

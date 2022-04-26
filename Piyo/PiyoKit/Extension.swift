@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension String {
+extension String {
     /*
      * Dictionary Converts a value to a string.
      * key=value&key=value
@@ -27,9 +27,11 @@ public extension String {
         return parameters
     }
 
-    func toURL() throws -> URL {
+    func toUrl() throws -> URL {
         guard let url = URL(string: self) else {
-            throw NSError(domain: "Invalid url", code: 10001)
+            throw NSError(domain: "Invalid URL",
+                          code: -10001,
+                          userInfo: ["LocalizedSuggestion": "Incorrect URL, Review the URL"])
         }
         return url
     }
@@ -75,7 +77,7 @@ func arrayOfBytes<T>(_ value: T, length: Int? = nil) -> [UInt8] {
     return bytes
 }
 
-public extension Dictionary {
+extension Dictionary {
     /*
      * encoded Dictionary's value
      *
@@ -93,7 +95,7 @@ public extension Dictionary {
     }
 }
 
-public extension String {
+extension String {
     /*
      * PersentEncode
      */
