@@ -55,7 +55,7 @@ open class Piyo {
                                  upload: Bool = false) -> String?
     {
         do {
-            return try OAuthKit.authorizationHeader(for: url.toURL(),
+            return try OAuthKit.authorizationHeader(for: url.toUrl(),
                                                     method: method.rawValue,
                                                     parameters: param,
                                                     isMediaUpload: upload)
@@ -113,7 +113,7 @@ open class Piyo {
      */
     public static func beare() -> URLRequest? {
         let url = ApiURL.beareToken
-        let credential = URI.credentials
+        let credential = BearerToken.credentials
         let header: [String: String] = ["Authorization": "Basic " + credential,
                                         "Content-Type": "application/x-www-form-urlencoded; charset=utf8"]
         let parameter = ["grant_type": "client_credentials"]

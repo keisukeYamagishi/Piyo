@@ -8,6 +8,7 @@
 
 import Foundation
 
+@frozen
 enum ApiURL {
     static let oAuthUrl = "https://api.twitter.com/oauth/request_token"
     static let oAuthAuthorize = "https://api.twitter.com/oauth/authorize?oauth_token="

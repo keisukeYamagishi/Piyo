@@ -15,11 +15,11 @@ class Request {
                        parameter: [String: String]? = nil) -> URLRequest?
     {
         do {
-            var request = try URLRequest(url: url.toURL())
+            var request = try URLRequest(url: url.toUrl())
             request.httpMethod = "POST"
 
-            if let para = parameter {
-                let value: String = URI.encode(param: para)
+            if let unwrapParameter = parameter {
+                let value: String = Encode.encode(unwrapParameter)
                 guard let data = value.data(using: .utf8) as Data? else { return nil }
 
                 let header: [String: String] = ["Content-Type": "application/x-www-form-urlencoded",

@@ -13,8 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet var checkImageView: UIImageView!
     @IBOutlet var beareTokenLabel: UILabel!
     @IBOutlet var accessTokenLabel: UILabel!
-    @IBOutlet weak var accessTokenStatusIcon: UIImageView!
-    
+    @IBOutlet var accessTokenStatusIcon: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         checkImageView.alpha = 0.0
